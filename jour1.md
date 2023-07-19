@@ -219,4 +219,158 @@ Exemple :
 Une salle peut contenir 0 ou plusieurs ordinateurs. Un ordinateur existe dans une et une seule salle.
 Dans ce type de relation une CIF existe si on a une cardinalite 1,1
 
+### Modele logique des donnees (MLD)
+
+Le MLD est la suite du processus Merise, on se rapproche un peu plus de la base de donnees.
+#### Cas simples
+Partons du MCD suivant : 
+
+![Alt text](image-19.png)
+
+**entité propriété relation** cardinalités
+
+Nous arrivons au MLD suivant :
+
+![Alt text](image-20.png)
+
+L'`entité` qui possede la cardinalité 1.1 ou 0.1 absorbe l'identifiant de l'entité la plus forte (0.n ou 1.n). Cet identitifiant devient alors une clé étrangère.
+#### Cas (0,n), (0,n) ou  (1,n), (1,n)
+
+Partons du MCD suivant :
+
+![Alt text](image-21.png)
+
+Dans le cas ou la `cardinalité max` est n est deux cotes, on va crée une entité intermediaire qui va contenir les deux clés étrangère des deux entités.
+
+![Alt text](image-22.png)
+
+Continuons avec le MCD suivant : 
+
+![Alt text](image-23.png)
+
+On obtient le MCD suivant en suivant la même logique : 
+
+![Alt text](image-24.png)
+
+#### Cas d'une relation reflexive 
+
+Partons du MCD suivant : 
+
+![Alt text](image-25.png)
+
+![Alt text](image-26.png)
+
+#### Regles de passage du MCD au MLD
+
+Règles simples de passage du MCD au MLD
+L’entité qui possède la cardinalité maximale égale à 1 recevra l’identifiant ou les identifiants des entités ayant les cardinalités maximales les plus fortes.
+
+Les relations ayant toutes leurs entités reliées avec des cardinalités maximales supérieures à 1 se transformeront en entité en absorbant les identifiants des entités jointes.
+
+Toute relation porteuse de propriétés se transformera en entité et absorbera comme clé étrangère les identifiants des entités qui lui sont liées.
+
+Toute relation réflexive se transformera en entité et absorbera comme clé étrangère l’identifiant de l’entité qui lui est liée.
+
+#### Petit exercice pratique
+
+![Alt text](image-27.png)
+
+Voici le MLD 
+
+![Alt text](image-28.png)
+
+### Modele physique des données (MPD)
+
+Voici le schema relationnel correspondant au MLD precedent :
+
+Diplômes (Diplomes)
+
+Possède (#NumEmployé, #Diplôme, Date d’obtention)
+
+Employés (NumEmployé, Nom, Prénom, Adresse, Code Postal, Ville, Téléphone)
+
+Tables (NumTable, Capacité)
+
+Date (Date)
+
+Service (TypeService, Désignation)
+
+Boissons Diverses (NumBoissons, Désignation, Prix de vente)
+
+Contenir (#NumCommande, #NumBoissons, Quantité)
+
+Commande (NumCommande, #Numemployé, #Date, #TypeService, #NumTable)
+
+Comprend (#NumMenu, #NumCommande, Quantité)
+
+Menus (NumMenu, Libellé, Prix de vente)
+
+Constitué (#NumMenu, #NumPlat)
+
+Constituer (#NumCommande, #NumPlat, Quantité)
+
+Sélectionner (#NumCommande, #NumVin, Quantité)
+
+Carte des vins (NumVin, Nom du vin, Millesime, Prix de vente)
+
+Carte des plats (NumPlat, LibelléPlat, Prix de vente, #NumType)
+
+Type des plats (NumType, Désignation)
+
+Bouteilles (NumBouteille, Date Achat, Prix d’achat, # NumVin, #NumViticulteur)
+
+Viticulteur (NumViticulteur, Nom viticulteur, Prénom viticulteur, Adresse viticulteur, Code postal, Ville, Téléphone)
+
+A partir d'ici il est facile de generer le script SQL correspondant.
+
+```SQL
+CREATE TABLE CARTE_DES_VINS
+   (
+   NUMVIN INTEGER(2) NOT NULL ,
+   NOM_DU_VIN CHAR(40)   ,
+   MILLESIME INTEGER(2)  ,
+   PRIX_DE_VENTE REAL(5,2)
+,
+    PRIMARY KEY (NUMVIN) CONSTRAINT PK_CARTE_DES_VINS
+   );
+
+CREATE TABLE BOUTEILLES
+   (
+   NUMVITICULTEUR INTEGER(2) NOT NULL ,
+   NUMVIN INTEGER(2) NOT NULL ,
+   NUMBOUTEILLE INTEGER(2) NOT NULL ,
+   DATE_ACHAT DATE(8) ,
+   PRIX_D_ACHAT REAL(5,2)
+,
+    PRIMARY KEY (NUMVITICULTEUR, NUMVIN, NUMBOUTEILLE) CONSTRAINT
+PK_BOUTEILLES
+   );
+
+
+CREATE TABLE VITICULTEUR
+   (
+   NUMVITICULTEUR INTEGER(2) NOT NULL ,
+   NOM_VITICULTEUR CHAR(20) ,
+   PRÉNOM_VITICULTEUR CHAR(20) ,
+   ADRESSE_VITICULTEUR CHAR(40) ,
+   CODE_POSTAL CHAR(5) ,
+   VILLE CHAR(40) ,
+   TÉLÉPHONE CHAR(15)
+,
+    PRIMARY KEY (NUMVITICULTEUR) CONSTRAINT PK_VITICULTEUR
+   );
+```
+
+##### Exercice 1 : 
+MCD :
+![Alt text](image-29.png)
+
+MLD : 
+![Alt text](image-30.png)
+
+schema relationnel : 
+
+Animaux (NumAnimal_Animaux, Race_animal_Animaux)  Légumes (NumLégume_Légumes, Nom_fruit_Légumes, Prix_fruit_Légumes)  Fruits (NumFruit_Fruits, Nom_fruit_Fruits, Prix_fruit_Fruits)  Info_de_vente (NumInfo_Info_de_vente, Poids_Information_de_vente, Vente_journalières_Info_de_vente, #agriculteur_numagriculteur_agriculteur)  Agriculteur (NumAgriculteur_Agriculteur, Nom_Agriculteur, Prénom_Agriculteur)  Vendre (NumLégume_Légumes, NumFruit_Fruits, NumAnimal_Animaux, NumInfo_Info_de_vente, Quantité_Vendre)  
+
+
 
