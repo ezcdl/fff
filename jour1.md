@@ -373,4 +373,135 @@ schema relationnel :
 Animaux (NumAnimal_Animaux, Race_animal_Animaux)  Légumes (NumLégume_Légumes, Nom_fruit_Légumes, Prix_fruit_Légumes)  Fruits (NumFruit_Fruits, Nom_fruit_Fruits, Prix_fruit_Fruits)  Info_de_vente (NumInfo_Info_de_vente, Poids_Information_de_vente, Vente_journalières_Info_de_vente, #agriculteur_numagriculteur_agriculteur)  Agriculteur (NumAgriculteur_Agriculteur, Nom_Agriculteur, Prénom_Agriculteur)  Vendre (NumLégume_Légumes, NumFruit_Fruits, NumAnimal_Animaux, NumInfo_Info_de_vente, Quantité_Vendre)  
 
 
+## Les formes normales (FN)
+
+Ensemble de regles qui a pour but d'eviter les anomalies au sein des BDDR. 
+Pour appliquer les concepts des formes normal il est necessaire de connaitre les trois premières formes normales.
+
+### Forme normale 1 (1FN)
+
+Une relation est la première forme normal si : 
+- tous les attributs sont atomiques
+- les attributs ne contiennenent pas de valeurs repetitves
+
+Exemple : 
+Clients (NumCli, Nom, Prénom, Adresse, Telephone)
+
+![Alt text](image-31.png)
+
+![Alt text](image-32.png)
+
+### Forme normale 2 (2FN)
+
+Une relation est une deuxième forme normal si : 
+
+- Elle est en 1FN 
+- Si tous les attribut qui ne sont pas des clés ne dépendant pas d'une partie de la clé primaire
+
+Exemple : 
+
+Commande(NumClient, CodeArticle, Date, QteCommande, Designation)
+
+![Alt text](image-33.png)
+
+![Alt text](image-34.png)
+
+### Forme normale 3 (3FN)
+
+Une relation est une troisième forme normal si :
+
+- Elle est en 2FN
+- Si toutes les dépendances fonctionnelles sont directes
+
+Les attribut non clé primaire ne dependent pas d'un attribut non clé primaire
+
+Exemple : 
+
+Commande (NumCommande, #CodeClient, #RefArticle)
+
+![Alt text](image-35.png)
+
+![Alt text](image-36.png)
+
+### Les diagrammes des flux
+
+Les diagrammes des flux permettent de modéliser les flux d'informations entre les acteurs du systèmes d'information et les acteurs du systèmes opérant
+
+Quelques définitions : 
+- Domaine d'étude : Le périmètre d'une activité au sein d'une entreprise, d'une activité spécifique
+- L'acteur :  une personne, un service, une entreprise, un système informatique qui intervient dans le domaine d'étude au moyen d'un flux information
+- Les flux : les informations qui circulent entre les acteurs, représente par une flèche et porte un nom et peut être numeroté (par soucis de chronologie) 
+
+Représentation graphique : 
+
+![Alt text](image-37.png)
+
+Quelques règles à respecter : 
+
+- Un flux ne peut pas être bidirectionnel
+- Un flux ne doit pas être reflexif
+- On ne représente pas les flux entre les acteurs externes
+
+## UML
+
+UML : Unified Modeling Language (language de modélisation unifié) est un langue de modélisation de données. UML à été normaliser en 1997 par l'OMG (Object Management Group). Son but est de mettre en forme les concepts orientés au travers de diagramme.
+
+UML propose 13 diagrammes de façon hiérarchique et se complètant.
+
+1. les diagrammes statique : Ils permettent de modéliser la structure d'un système 
+- Diagramme de classe
+- Diagramme d'objets
+- Diagramme de composant
+- Diagramme de déploiement
+- Diagramme de paquetages
+- Diagramme de structure composite
+
+2. Les diagrammes comportementaux : 
+
+- Diagramme des cas d'usage
+- Diagramme etat-transitions
+- Diagramme d'activité
+
+3. Les diagrammes dynamiques :
+
+- Diagramme de séquences
+- Diagramme de communication
+- Diagramme global d'intéraction
+- Diagramme de temps 
+
+### Analogie Merise / UML 
+ 
+1. Cas du MCD et du diagramme des classes
+
+Le MCD et le diagramme de classes partagent beaucoup de points communs. Les différences majeures apparaissent dans le côté objet d’UML. Cependant, au niveau du processus d’analyse, le diagramme de classes se rapproche plus du modèle logique des données. Le langage UML pour représenter une base de données ne passe pas d’un état correspondant à un MCD à un MLD. Il faut donc à l’analyste une bonne approche ou vision de la base de données pour la représenter sans faille en langage UML. Le découpage MCD, MLD apporte plus de sécurité, à ce niveau-là, qu’UML.
+
+![Alt text](image-38.png)
+
+![Alt text](image-39.png)
+
+Representation d'une relation :
+
+![Alt text](image-40.png)
+
+
+Exercice 2 : 
+
+MCD : 
+
+![Alt text](image-41.png)
+
+MLD : 
+
+![Alt text](image-42.png)
+
+schema relationnel : 
+
+![Alt text](image-43.png)
+
+
+Exercice 3 : 
+
+
+
+
 
