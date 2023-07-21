@@ -145,7 +145,7 @@ Quelques définitions :
 
 ![Alt text](image-9.png)
 
-**Les cardinalités** : Elle permettent de définir le bombre d'occurences d'une entité par rapport à une autre entité dans le cadre d'une relation.
+**Les cardinalités** : Elle permettent de définir le nombre d'occurences d'une entité par rapport à une autre entité dans le cadre d'une relation.
 
 ![Alt text](image-10.png)
 
@@ -169,9 +169,9 @@ Une relation est dite reflexive si elle relie une entite a elle meme.
 Quelques regle de conception : 
 
 - toute entite doit avoir un identifiant
--toutes les propriéter dependant fonctionnellement de l'identifiant
--le nom d'une propriete ne doit  apparaitre qu'une fois dans le MCD : si vous avez une entite Eleve et une entite Professeur, vous ne pouvez pas avoir une proprieté nom dans les deux entités. Il faut donc renommer la propriéter nom de l'entite Professeur en nomProfesseur par exemple.
--les proprietes issues d'un calcul ne doivent pas apparaitre dans le MCD.
+- toutes les propriéter dependant fonctionnellement de l'identifiant
+- le nom d'une propriete ne doit  apparaitre qu'une fois dans le MCD : si vous avez une entite Eleve et une entite Professeur, vous ne pouvez pas avoir une proprieté nom dans les deux entités. Il faut donc renommer la propriéter nom de l'entite Professeur en nomProfesseur par exemple.
+- les proprietes issues d'un calcul ne doivent pas apparaitre dans le MCD.
 
 Le rôle d'une dependance fonctionnelle est de permettre de definir une relation de dependance entre deux attribut d'une table : une donnée A depend fonctionellement d'une donnée B lorsque la valeur de B determine la valeur de A.
 
@@ -501,7 +501,30 @@ schema relationnel :
 
 Exercice 3 : 
 
+MCD : 
+
+![Alt text](image-44.png)
+
+MLD : 
+
+![Alt text](image-45.png)
+
+schema relationnel : 
+
+![Alt text](image-46.png)
+
+Exercice 4 : 
 
 
+Voici mon MCD de l'examen : 
 
+![Alt text](image-47.png)
+
+MLD: 
+
+![Alt text](image-49.png)
+
+Schéma Relationnel : 
+
+![Alt text](image-48.png)
 
